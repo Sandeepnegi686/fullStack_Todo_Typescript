@@ -6,7 +6,9 @@ import { Request, Response } from "express";
 async function getAllTodos(_: Request, res: Response) {
   try {
     const todos: Todo[] = await TodoModel.find();
-    return res.status(200).json({ message: "all data", success: true, todos });
+    return res
+      .status(200)
+      .json({ message: "all data", success: true, todo: todos });
   } catch (error) {
     console.log(error);
     return res

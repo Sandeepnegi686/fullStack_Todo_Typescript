@@ -1,6 +1,6 @@
 "use client";
 import { FormEvent, useEffect, useState } from "react";
-import ITodo from "./types/Todo";
+import { ITodo } from "./types/Todo";
 import { createTodo, deleteTodo, getAllTodos } from "./lib/todoApi";
 
 export default function Home() {
@@ -17,10 +17,11 @@ export default function Home() {
   useEffect(function () {
     getAllTodos().then((data) => {
       if (data.success) {
-        setTodos(data.todos);
+        setTodos(data.todo);
       }
     });
   }, []);
+
   async function addTodo(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!title) return null;
