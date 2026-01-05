@@ -8,25 +8,26 @@ const todoApi = axios.create({
 });
 
 export async function getAllTodos(): Promise<I_API_RESPONSE<ITodo[]>> {
-  const data = await todoApi.get("/getAllTodos");
-  return data.data;
+  const { data } = await todoApi.get("/getAllTodos");
+  console.log(data);
+  return data;
 }
 
 export async function createTodo(
   title: string
 ): Promise<I_API_RESPONSE<ITodo>> {
-  const res: AxiosResponse<I_API_RESPONSE<ITodo>> = await todoApi.post(
+  const { data }: AxiosResponse<I_API_RESPONSE<ITodo>> = await todoApi.post(
     "/create",
     {
       title,
     }
   );
-  return res.data;
+  return data;
 }
 
 export async function deleteTodo(id: string): Promise<I_API_RESPONSE<ITodo>> {
-  const res: AxiosResponse<I_API_RESPONSE<ITodo>> = await todoApi.delete(
+  const { data }: AxiosResponse<I_API_RESPONSE<ITodo>> = await todoApi.delete(
     `/delete/${id}`
   );
-  return res.data;
+  return data;
 }

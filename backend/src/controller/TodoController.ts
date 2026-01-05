@@ -8,12 +8,12 @@ async function getAllTodos(_: Request, res: Response) {
     const todos: Todo[] = await TodoModel.find();
     return res
       .status(200)
-      .json({ message: "all data", success: true, todo: todos });
+      .json({ message: "all data", success: true, data: todos });
   } catch (error) {
     console.log(error);
     return res
       .status(500)
-      .json({ message: "something went wrong", success: false, todos: [] });
+      .json({ message: "something went wrong", success: false, data: [] });
   }
 }
 

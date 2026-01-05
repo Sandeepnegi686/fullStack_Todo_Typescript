@@ -7,5 +7,5 @@ export interface ITodo {
 export interface I_API_RESPONSE<T> {
   message: string;
   success: boolean;
-  todo: T;
+  data: T;
 }

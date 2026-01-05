@@ -8,8 +8,8 @@ export default function Home() {
   const [title, setTitle] = useState<string>("");
 
   async function handleDelete(_id: string) {
-    const data = await deleteTodo(_id);
-    if (data.success) {
+    const { success } = await deleteTodo(_id);
+    if (success) {
       setTodos((todos) => todos.filter((todo) => todo._id !== _id));
     }
   }
@@ -17,7 +17,7 @@ export default function Home() {
   useEffect(function () {
     getAllTodos().then((data) => {
       if (data.success) {
-        setTodos(data.todo);
+        setTodos(data.data);
       }
     });
   }, []);
@@ -25,9 +25,10 @@ export default function Home() {
   async function addTodo(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!title) return null;
-    const data = await createTodo(title);
-    setTodos((p) => [...p, data.data]);
+    const { data } = await createTodo(title);
+    setTodos((p) => [...p, data]);
   }
+
   return (
     <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans">
       <main className="min-h-screen w-full max-w-3xl py-32 px-16 bg-white sm:items-start">
